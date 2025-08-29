@@ -1,5 +1,4 @@
 ﻿using WeatherProxy.Models.OpenMeteoResponses;
-using static System.Net.WebRequestMethods;
 
 namespace WeatherProxy.Services;
 
