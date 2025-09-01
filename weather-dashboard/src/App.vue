@@ -9,13 +9,13 @@ const weather = ref<WeatherDto | null>(null)
 const loading = ref(false)
 const error = ref<string | null>(null)
 
-async function fetchWeather(city: string) {
+async function fetchWeather(city: string, days = 3) {
   weather.value = null
   error.value = null
   loading.value = true
 
   try {
-    weather.value = await getWeather(city)
+    weather.value = await getWeather(city, days)
   } catch (e) {
     error.value = (e as Error).message ?? 'Weather download error'
   } finally {
