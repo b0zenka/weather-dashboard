@@ -51,5 +51,6 @@ async function fetchWeather(city: string, days = 3) {
 </template>
 
 <style>
+@import 'tailwindcss';
 body { font-family: sans-serif; }
 </style>
