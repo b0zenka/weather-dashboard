@@ -71,6 +71,13 @@ GET /weather/London?days=3
 
 ---
 
+## Screenshots
+
+![Dashboard View](assets/dashboard.png)
+![API Swagger UI](assets/swagger.png)
+
+---
+
 ## License
 
 MIT
