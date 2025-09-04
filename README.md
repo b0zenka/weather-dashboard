@@ -1,46 +1,76 @@
-usage: git [--version] [--help] [-C <path>] [-c <name>=<value>]
-           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]
-           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]
-           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]
-           [--super-prefix=<path>] [--config-env=<name>=<envvar>]
-           <command> [<args>]
+# Weather Dashboard & WeatherProxy
 
-These are common Git commands used in various situations:
+This project consists of a Vue 3 frontend for displaying weather data and an ASP.NET Core backend that proxies weather information from external APIs.
 
-start a working area (see also: git help tutorial)
-   clone             Clone a repository into a new directory
-   init              Create an empty Git repository or reinitialize an existing one
+---
 
-work on the current change (see also: git help everyday)
-   add               Add file contents to the index
-   mv                Move or rename a file, a directory, or a symlink
-   restore           Restore working tree files
-   rm                Remove files from the working tree and from the index
-   sparse-checkout   Initialize and modify the sparse-checkout
+## Frontend: `weather-dashboard` (Vue 3 + Vite)
 
-examine the history and state (see also: git help revisions)
-   bisect            Use binary search to find the commit that introduced a bug
-   diff              Show changes between commits, commit and working tree, etc
-   grep              Print lines matching a pattern
-   log               Show commit logs
-   show              Show various types of objects
-   status            Show the working tree status
+### Features
+- Search for weather by city
+- View hourly and daily forecasts
+- Interactive charts (Chart.js, vue-chartjs)
+- Responsive UI (Tailwind CSS)
 
-grow, mark and tweak your common history
-   branch            List, create, or delete branches
-   commit            Record changes to the repository
-   merge             Join two or more development histories together
-   rebase            Reapply commits on top of another base tip
-   reset             Reset current HEAD to the specified state
-   switch            Switch branches
-   tag               Create, list, delete or verify a tag object signed with GPG
+### Setup
 
-collaborate (see also: git help workflows)
-   fetch             Download objects and refs from another repository
-   pull              Fetch from and integrate with another repository or a local branch
-   push              Update remote refs along with associated objects
+1. **Install dependencies:**
+```
+npm install
+```
+2. **Run in development mode:**
+```
+npm run dev
+```
+3. **Build for production:**
+```
+npm run build
+```
 
-'git help -a' and 'git help -g' list available subcommands and some
-concept guides. See 'git help <command>' or 'git help <concept>'
-to read about a specific subcommand or concept.
-See 'git help git' for an overview of the system.
+### Configuration
+- The frontend expects the backend API to be available at `http://localhost:5000` (default ASP.NET Core port).
+- Update API endpoints in your Vue components if needed.
+
+---
+
+## Backend: `WeatherProxy` (ASP.NET Core 8)
+
+### Features
+- REST API endpoint: `/weather/{city}?days={n}`
+- CORS enabled for frontend origin
+- Caching for repeated requests
+- Swagger UI for API documentation
+- Proxies weather data from Open-Meteo
+
+### Setup
+
+1. **Restore and build:**
+```
+dotnet restore dotnet build
+```
+2. **Run the application:**
+```
+dotnet run
+```
+3. **API Usage Example:**
+```
+GET /weather/London?days=3
+```
+
+### Configuration
+- CORS origin is set via `FrontendOrigin` in `appsettings.json`.
+- Swagger UI available at `/swagger` in development mode.
+
+---
+
+## Development Notes
+
+- Frontend uses Vite for fast development and hot-reload.
+- Backend uses in-memory caching and external HTTP client for weather data.
+- Both projects are decoupled and communicate via HTTP.
+
+---
+
+## License
+
+MIT
