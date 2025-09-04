@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./WeatherProxy
+      dockerfile: Dockerfile
+    container_name: weather-backend
+    ports:
+      - 44337:8080
+    networks:
+      - weather-network
+  frontend:
+    build:
+      context: ./weather-dashboard
+      dockerfile: Dockerfile
+    container_name: weather-frontend
+    environment:
+      NODE_ENV: production
+    ports:
+      - 5173:4173
+    networks:
+      - weather-network
+    depends_on:
+      - backend
+
+networks:
+  weather-network:
+    driver: bridge
