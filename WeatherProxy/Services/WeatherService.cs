@@ -3,12 +3,12 @@ using WeatherProxy.Models.Dtos;
 
 namespace WeatherProxy.Services;
 
-public class WeatherService
+public class WeatherService : IWeatherService
 {
-    private readonly OpenMeteoClient _client;
+    private readonly IOpenMeteoClient _client;
     private readonly IMemoryCache _cache;
 
-    public WeatherService(OpenMeteoClient openMeteoClient, IMemoryCache cache)
+    public WeatherService(IOpenMeteoClient openMeteoClient, IMemoryCache cache)
     {
         _client = openMeteoClient;
         _cache = cache;

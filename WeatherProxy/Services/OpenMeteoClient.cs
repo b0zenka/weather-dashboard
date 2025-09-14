@@ -2,7 +2,7 @@
 
 namespace WeatherProxy.Services;
 
-public class OpenMeteoClient
+public class OpenMeteoClient : IOpenMeteoClient
 {
     private readonly HttpClient _httpClient;
 
@@ -19,7 +19,7 @@ public class OpenMeteoClient
 
         if (result == null)
             throw new KeyNotFoundException("City not found");
-        
+
         return (result.latitude, result.longitude);
     }
 

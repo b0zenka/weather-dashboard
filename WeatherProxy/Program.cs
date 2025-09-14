@@ -17,8 +17,8 @@ builder.Services.AddCors(o =>
 
 builder.Services.AddHttpClient("openmeteo");
 builder.Services.AddMemoryCache();
-builder.Services.AddScoped<OpenMeteoClient>();
-builder.Services.AddScoped<WeatherService>();
+builder.Services.AddScoped<IOpenMeteoClient, OpenMeteoClient>();
+builder.Services.AddScoped<IWeatherService, WeatherService>();
 
 var app = builder.Build();
 

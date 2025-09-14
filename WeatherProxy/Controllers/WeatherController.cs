@@ -7,8 +7,8 @@ namespace WeatherProxy.Controllers;
 [Route("[controller]")]
 public class WeatherController : ControllerBase
 {
-    private readonly WeatherService _weatherService;
-    public WeatherController(WeatherService weatherService)
+    private readonly IWeatherService _weatherService;
+    public WeatherController(IWeatherService weatherService)
     {
         _weatherService = weatherService;
     }
